@@ -25,7 +25,7 @@ void client (int client_socket){
             
             memset(buffer, 0, sizeof(buffer));
             
-            // Receving a message from ther server.
+            // Receiving a message from ther server.
             int bytes_received = recv(client_socket, buffer, sizeof(buffer),0);
             if( bytes_received > 0){
                 // Starting a mutex lock.
@@ -64,7 +64,7 @@ void client (int client_socket){
         cout << "Enter your message : ";
         getline(cin,message);
 
-        // If the client tpes exit the program ends.
+        // If the client tapes exit the program ends.
         if(message == "exit"){
             break;
         }
@@ -117,7 +117,7 @@ int main(int argc, char* argv[]) {
 
 }
 
-//complie:  g++ client.cpp -o client
+//compile:  g++ client.cpp -o client
 //run: 
 //client: ./client 127.0.0.1 <client_name>
 

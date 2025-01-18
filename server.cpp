@@ -14,7 +14,7 @@
 // Using map to store client names and their socket numbers.
 map<string,int> clients;
 
-// A function that handels the entire server side.
+// A function that handles the entire server side.
 void handle_client(int client_socket){
 
     char buffer[1024];
@@ -45,17 +45,17 @@ void handle_client(int client_socket){
     while(true){
 
         memset(buffer,0,sizeof(buffer));
-        int bytes_resceived = recv(client_socket, buffer, sizeof(buffer),0);
+        int bytes_received = recv(client_socket, buffer, sizeof(buffer),0);
 
         // Disconnects clients who quested to disconnect.
-        if(bytes_resceived <= 0 || string(buffer).find("exit") == 0){
+        if(bytes_received <= 0 || string(buffer).find("exit") == 0){
             cout << "Client disconnected : " << client_name << endl;
             close(client_socket);
             clients.erase(client_name);
             break;
         }
 
-        string message = string(buffer).substr(0, bytes_resceived);
+        string message = string(buffer).substr(0, bytes_received);
 
         // Separates the messages into parts.
         istringstream iss(message);
@@ -65,7 +65,7 @@ void handle_client(int client_socket){
             words.push_back(word);
         }
 
-        // Checks that the first woed is the "send" command.
+        // Checks that the first word is the "send" command.
         if(words[0] == "send" || words[0] == "Send" || words[0] == "SEND" ){
             // Calculates the name of the client to whom the message should be sent.
             string other_client_name= words[1];
@@ -175,7 +175,7 @@ int main() {
             cout << "Failed to accept connection." << endl;
             continue;
         }
-        // Usind thread for each client.
+        // Using thread for each client.
         thread(handle_client, client_socket).detach();
 
     }
@@ -187,6 +187,6 @@ int main() {
     
 }
 
-//complie:  g++ server.cpp -o server
+//compile:  g++ server.cpp -o server
 //run: 
 //server: ./server
