@@ -61,10 +61,9 @@ You can run multiple client windows at the same time - all connect to:
 ---
 
 ### 📁 Project Structure
-/Multi-Client-Chat-Application
-│── server.cpp            # Server logic: threads, clients map, routing messages
-│── client.cpp            # Client logic: connecting, sending commands, receiving messages
-└── std_lib_facilities.h  # Utilities header used by the project
+- server.cpp            # Server logic: threads, clients map, routing messages
+- client.cpp            # Client logic: connecting, sending commands, receiving messages
+- std_lib_facilities.h  # Utilities header used by the project
 
 
 ---
