@@ -1,32 +1,88 @@
-# Multi-Client-Chat-Application
-This project implements a multi-client chat application using C++ with socket programming. It features a server and client architecture, enabling real-time communication between multiple clients in a local network. The system is built for simplicity and scalability, ensuring proper message handling and synchronization.
+### 💬 Multi-Client Chat Application - C++ Socket Programming
+A console-based chat system built in C++ using TCP sockets.  
+The project implements a real-time client–server model where multiple clients can connect and send messages to each other.
 
-# Key Features
-1. Server:
+---
 
-* Listens for incoming client connections on a predefined port (127.0.0.1:4444).
-* Manages multiple clients concurrently using threads.
-* Maintains a mapping of connected client names to their respective socket connections.
-* Supports the following functionalities:
-  Direct Messaging: Clients can send private messages to other connected users.
-  Client List: Clients can request a list of all connected users.
-  Graceful Disconnection: Handles client disconnection requests and server shutdown commands efficiently.
+### ✨ Features
+- 🔌 **TCP Client–Server Architecture** - central server managing all connections  
+- 👥 **Multiple Clients** - each client handled in its own detached thread  
+- 🧵 **Multithreading** - smooth parallel communication using `std::thread`  
+- 💬 **Direct Messaging** - send messages to specific users using the `send <name> <message>` command  
+- 📜 **User Listing** - view connected users with `list`  
+- 🚫 **Error Handling** - duplicate names, user not found, undefined commands  
+- 🛑 **Graceful Disconnects** - clients can exit without affecting others  
+- ⚙️ **Admin Exit Command** - server can shut down cleanly using `exit`
 
-2. Client:
+---
 
-* Connects to the server and registers with a unique name.
-* Allows real-time messaging between connected users.
-* Displays incoming messages with proper formatting and synchronization using a mutex.
-* Detects and handles server errors (e.g., name conflicts or server shutdown) gracefully.
-* Enables users to type "exit" to disconnect.
+### 🛠️ Tech Stack
+- C++  
+- Linux Socket API (`socket`, `bind`, `listen`, `accept`, `recv`, `send`)  
+- Multithreading (`std::thread`)  
+- Data structures (`map`, `vector`, `istringstream`)  
+- GCC / g++ compiler  
 
-3. Concurrency:
+---
 
-* The server uses threads to manage multiple client connections simultaneously.
-* The client employs threading for listening to incoming messages while sending new ones.
+### ▶️ How to Run
 
-4. Error Handling:
+#### 1️⃣ Compile the Server
+```bash
+g++ server.cpp -o server -pthread
+```
+Run:
+```bash
+./server
+```
+#### 2️⃣ Compile the Client
+```bash
+g++ client.cpp -o client
+```
+Run:
+```bash
+./client
+```
+You can run multiple client windows at the same time - all connect to:
+```bash
+127.0.0.1 : 4444
+```
 
-* Ensures that client names are unique. If a duplicate name is detected, the server notifies the client and disconnects.
-* Provides meaningful error messages for undefined commands or invalid client requests.
-* Notifies all clients upon server shutdown.
+---
+
+### 💡 Available Commands (Client Side)
+
+| Command | Description |
+|--------|-------------|
+| `send <name> <message>` | Sends a direct message to another connected client |
+| `list` | Shows all connected clients except yourself |
+| `exit` | Disconnects from the server |
+
+---
+
+### 📁 Project Structure
+/Multi-Client-Chat-Application
+│── server.cpp            # Server logic: threads, clients map, routing messages
+│── client.cpp            # Client logic: connecting, sending commands, receiving messages
+└── std_lib_facilities.h  # Utilities header used by the project
+
+
+---
+
+### 🚀 What This Project Demonstrates
+- Understanding of TCP/IP networking  
+- Practical socket programming in C++  
+- Real-time message routing between clients  
+- Safe multithreading with detached threads  
+- Error handling and command parsing  
+- Building and structuring small networked systems  
+
+---
+
+### 📬 Contact
+- 🌐 Portfolio: https://matans-portfolio.vercel.app/  
+- 💼 LinkedIn: www.linkedin.com/in/matan-ohayon-4101b6276  
+- 📧 Email: matan1ohayon@gmail.com
+
+
+
